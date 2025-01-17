@@ -1,0 +1,42 @@
+# Python
+*.pyc
+*.pyo
+*.pyd
+__pycache__
+*.so
+*.egg
+*.egg-info
+dist
+build
+*.bak
+.idea
+
+# Django
+*.log
+local_settings.py
+db.sqlite3
+
+# Ignore Django collectstatic output (if you use it)
+staticfiles/
+
+# Ignore temporary files or directories
+*.swp
+*.swo
+
+# VSCode
+.vscode/
+
+# PyCharm
+*.idea
+
+# Virtualenv
+venv/
+ENV/
+env/
+*.venv
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db

